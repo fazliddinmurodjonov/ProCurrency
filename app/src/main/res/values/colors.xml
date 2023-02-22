@@ -15,4 +15,5 @@
     <color name="green_one">#62C646</color>
     <color name="green_two">#4FA35B</color>
     <color name="yellow">#F1F64E</color>
+    <color name="divider">#E5E5E5</color>
 </resources>

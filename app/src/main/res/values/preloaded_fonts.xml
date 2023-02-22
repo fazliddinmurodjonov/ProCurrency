@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
-        <item>@font/baloo_bhai</item>
-        <item>@font/baloo_tamma_2_semibold</item>
-        <item>@font/balsamiq_sans</item>
-        <item>@font/balsamiq_sans_bold</item>
-        <item>@font/caudex</item>
-        <item>@font/red_rose_medium</item>
-        <item>@font/roboto</item>
-        <item>@font/roboto_mono_bold</item>
-        <item>@font/roboto_mono_medium</item>
-        <item>@font/roboto_slab</item>
     </array>
 </resources>

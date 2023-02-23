@@ -2,9 +2,12 @@
     <string name="app_name">Pro Currency</string>
     <string name="date">08.08.2023</string>
     <string name="selling_price">10 530</string>
+    <string name="selling_price_with_currency">10 530,87 UZS</string>
     <string name="buying_price">10 530</string>
     <string name="selling">Sotilishi</string>
+    <string name="buy">Sotib olish</string>
     <string name="buying">Olinishi</string>
     <string name="currency">UZS</string>
     <string name="time">09:00</string>
+    <string name="currency_usd">USD</string>
 </resources>

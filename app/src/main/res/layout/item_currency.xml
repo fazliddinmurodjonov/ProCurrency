@@ -15,8 +15,9 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:stateListAnimator="@null"
     app:cardCornerRadius="20dp"
-    app:cardElevation="1dp"
+    app:cardElevation="0.5dp"
     app:cardMaxElevation="0dp"
+    app:cardUseCompatPadding="true"
     tools:ignore="MissingConstraints,TouchTargetSizeCheck">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +30,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@null"
             android:src="@drawable/usd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -108,8 +110,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintTop_toTopOf="@id/sell"
-            app:layout_constraintBottom_toBottomOf="@id/sellPrice"
             android:backgroundTint="@null"
             android:backgroundTintMode="@null"
             android:clickable="true"
@@ -120,18 +120,19 @@
             app:cardCornerRadius="500dp"
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/sellPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sell" />
+
         <ImageView
-            app:layout_constraintBottom_toBottomOf="@id/calculateCard"
-            app:layout_constraintStart_toStartOf="@id/calculateCard"
-            app:layout_constraintEnd_toEndOf="@id/calculateCard"
-            app:layout_constraintTop_toTopOf="@id/calculateCard"
-            android:src="@drawable/calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:src="@drawable/calculate"
+            app:layout_constraintBottom_toBottomOf="@id/calculateCard"
+            app:layout_constraintEnd_toEndOf="@id/calculateCard"
+            app:layout_constraintStart_toStartOf="@id/calculateCard"
+            app:layout_constraintTop_toTopOf="@id/calculateCard"
+            android:contentDescription="@null" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </com.google.android.material.card.MaterialCardView>

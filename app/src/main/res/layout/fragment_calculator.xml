@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/background"
     tools:context="com.programmsoft.fragments.CalculatorFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -21,7 +21,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:stateListAnimator="@null"
         app:cardCornerRadius="20dp"
-        app:cardElevation="1dp"
+        app:cardElevation="0.5dp"
         app:cardMaxElevation="0dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,10 +38,10 @@
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/topSpinner"
                 android:layout_width="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/currencyEdt"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:popupBackground="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/currencyEdt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="parent"
@@ -73,18 +73,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/topSpinner"
-                tools:ignore="MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                tools:ignore="Autofill,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageView
                 android:id="@+id/exchangeImg"
                 android:layout_width="?actionBarSize"
                 android:layout_height="?actionBarSize"
                 android:elevation="1dp"
-                    android:src="@drawable/exchange"
+                android:src="@drawable/exchange"
                 app:layout_constraintBottom_toTopOf="@id/bottomSpinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/currencyEdt" />
+                app:layout_constraintTop_toBottomOf="@id/currencyEdt"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/leftDivider"
@@ -135,7 +136,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bottomSpinner"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="DisableBaselineAlignment">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/buyCurrencyLayout"

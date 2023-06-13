@@ -12,4 +12,5 @@
     <string name="currency_usd">USD</string>
     <string name="usd">USD</string>
     <string name="zero">0.0</string>
+    <string name="history_currencies">Valyutalarning o‘zgarish tarixi</string>
 </resources>

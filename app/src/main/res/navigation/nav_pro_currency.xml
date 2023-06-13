@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_currency">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_currency"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/allCurrenciesFragment"
+        android:name="com.programmsoft.fragments.AllCurrenciesFragment"
+        android:label="fragment_all_currencies"
+        tools:layout="@layout/fragment_all_currencies" />
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.programmsoft.fragments.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.programmsoft.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.ProCurrency" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ProCurrency" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -11,6 +11,17 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.ProCurrency.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.ProCurrency.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextAppearance.AppCompat.Widget.ActionBar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="fontFamily">@font/sf_display_regular</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextRegular" parent="Widget.AppCompat.TextView">
@@ -32,6 +43,26 @@
         <item name="cornerSizeTopRight">8dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.BottomNavigationView.Inactive" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="fontFamily">@font/sf_display_regular</item>
+        <item name="color">@color/unselected_icon</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.BottomNavigationView.Active" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="fontFamily">@font/sf_display_regular</item>
+        <item name="android:textColor">@color/green_one</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="NavigationTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/sf_display_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

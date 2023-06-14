@@ -13,4 +13,12 @@
     <string name="usd">USD</string>
     <string name="zero">0.0</string>
     <string name="history_currencies">Valyutalarning o‘zgarish tarixi</string>
+    <string name="share">Ulashish</string>
+    <string name="main">Bosh oyna</string>
+    <string name="all_currencies">Barcha valyutalar</string>
+    <string name="calculator">Kalkulyator</string>
+    <string name="about_app">Dastur haqida</string>
+    <string name="about_application">Pro valyuta kurslari ilovasi valyutalar haqida va almashishlari ma’lumotlar beradi.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

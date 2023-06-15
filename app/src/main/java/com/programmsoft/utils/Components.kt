@@ -2,6 +2,7 @@ package com.programmsoft.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
@@ -24,6 +25,8 @@ object Components {
         }
         val aboutItem = binding.navView.menu.findItem(R.id.nav_about)
         aboutItem.setOnMenuItemClickListener {
+            Toast.makeText(App.instance, "aa", Toast.LENGTH_SHORT).show()
+
             aboutAppDialog(fragmentManager)
             drawerClose(activity)
             true

@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/nav_currencies"
         android:name="com.programmsoft.fragments.AllCurrenciesFragment"
-        android:label="fragment_all_currencies"
+        android:label="@string/pro_currencies"
         tools:layout="@layout/fragment_all_currencies" />
     <fragment
         android:id="@+id/nav_calculator"
         android:name="com.programmsoft.fragments.CalculatorFragment"
-        android:label="fragment_calculator"
+        android:label="@string/pro_currencies"
         tools:layout="@layout/fragment_calculator" />
     <fragment
         android:id="@+id/nav_main"
         android:name="com.programmsoft.fragments.MainFragment"
-        android:label="fragment_main"
+        android:label="@string/pro_currencies"
         tools:layout="@layout/fragment_main" />
 </navigation>

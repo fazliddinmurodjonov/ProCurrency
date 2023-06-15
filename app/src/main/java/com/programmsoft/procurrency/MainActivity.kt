@@ -1,8 +1,9 @@
 package com.programmsoft.procurrency
 
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -12,9 +13,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.navigation.NavigationView
-import com.programmsoft.fragments.DialogFragment
 import com.programmsoft.procurrency.databinding.ActivityMainBinding
 import com.programmsoft.utils.Components
+
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val binding: ActivityMainBinding by viewBinding()
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navigationUI()
-        Components.clickMenu(binding, this,supportFragmentManager)
+        Components.clickMenu(binding, this, supportFragmentManager)
     }
 
     private fun navigationUI() {
@@ -50,18 +51,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navController.addOnDestinationChangedListener { _, _, _ ->
             binding.appBarMain.toolbar.setNavigationIcon(R.drawable.menu_hamburger)
         }
-        val dialogFragment = DialogFragment()
-        dialogFragment.show(supportFragmentManager, "About Program Dialog")
+        val actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, findViewById(R.id.toolbar), R.string.app_name, R.string.app_name)
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.drawerArrowDrawable.color = ContextCompat.getColor(this,R.color.black)
+        actionBarDrawerToggle.syncState()
     }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun aboutAppDialog(activity: Activity) {
-        val dialogFragment = DialogFragment()
-        dialogFragment.show(supportFragmentManager, "About App Dialog")
-    }
 
 }

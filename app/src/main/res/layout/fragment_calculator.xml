@@ -16,8 +16,6 @@
         android:background="@drawable/edt_bg_normal"
         android:backgroundTint="@null"
         android:backgroundTintMode="@null"
-        android:clickable="true"
-        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:stateListAnimator="@null"
         app:cardCornerRadius="20dp"
@@ -40,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:minHeight="48dp"
                 android:popupBackground="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/currencyEdt"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +55,6 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="@color/black"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:hint="@string/zero"
@@ -65,8 +63,8 @@
                 android:maxLines="1"
                 android:paddingBottom="10dp"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="#B3FFFFFF"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/exchangeImg"
@@ -115,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
+                android:minHeight="48dp"
                 android:popupBackground="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/currencyLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +160,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@id/buyPrice"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
 
                     <TextView
                         android:id="@+id/buyPrice"
@@ -197,7 +197,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@id/sellPrice"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck,TextContrastCheck" />
 
                     <TextView
                         android:id="@+id/sellPrice"
@@ -215,7 +216,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

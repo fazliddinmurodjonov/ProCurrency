@@ -9,14 +9,25 @@ import androidx.fragment.app.FragmentManager
 import com.programmsoft.fragments.DialogFragment
 import com.programmsoft.procurrency.R
 import com.programmsoft.procurrency.databinding.ActivityMainBinding
+import com.programmsoft.retrofit.ApiClient
+import com.programmsoft.room.db.DB
 
 object Components {
+
+    const val BASE_URL = "https://nbu.uz/uz/exchange-rates/"
+    val serviceOfCurrencies = ApiClient.serviceOfCurrencies
+    val db = DB.getInstance(App.instance)
     private fun drawerClose(context: Activity) {
         val drawer = context.findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.START)
     }
 
-    fun clickMenu(binding: ActivityMainBinding,activity:Activity,fragmentManager: FragmentManager) {
+
+    fun clickMenu(
+        binding: ActivityMainBinding,
+        activity: Activity,
+        fragmentManager: FragmentManager,
+    ) {
         val shareItem = binding.navView.menu.findItem(R.id.nav_share)
         shareItem.setOnMenuItemClickListener {
             shareAppLink()

@@ -1,60 +1,73 @@
 package com.programmsoft.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.programmsoft.procurrency.R
+import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.programmsoft.adapters.CurrencySliderAdapter
+import com.programmsoft.adapters.CurrencyViewPager
+import com.programmsoft.adapters.ViewPager2Adapter
+import com.programmsoft.procurrency.databinding.FragmentMainBinding
+import com.programmsoft.room.entity.Currency
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentMainBinding
+    lateinit var viewPagerAdapter: ViewPager2Adapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //     binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_main)
+
+        //    viewPagerAdapter = ViewPager2Adapter(requireContext())
+        val list = ArrayList<Currency>()
+        for (i in 0..5) {
+            val currency = Currency()
+            currency.code = i.toString()
+            list.add(currency)
+        }
+   // val adapter = CurrencyViewPager(list, requireActivity())
+
+    val adapter = CurrencySliderAdapter(list, requireActivity())
+    //   binding.currencyViewPager.adapter = adapter
+     // binding.currencyViewPager.offscreenPageLimit=1
+        binding.currencyViewPager.adapter = adapter
+        binding.currencyViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                // Handle page selection event
+                // You can perform any necessary actions when a new page is selected
+                // For example, update UI components based on the selected page
             }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                // Handle page scroll event
+                // You can perform any necessary actions while the page is being scrolled
+                // For example, update UI components based on the current scroll position
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                // Handle page scroll state change event
+                // You can perform any necessary actions when the scroll state changes
+                // For example, pause any ongoing animations or update UI components based on the scroll state
+            }
+        })
+//        view.layoutParams = LinearLayout.LayoutParams(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.MATCH_PARENT
+//        )
+
+
     }
 }

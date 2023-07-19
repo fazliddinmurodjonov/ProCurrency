@@ -1,5 +1,6 @@
 package com.programmsoft.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,6 +14,7 @@ import com.programmsoft.procurrency.databinding.DialogAboutApplicationBinding
 
 
 class DialogFragment : DialogFragment() {
+    @SuppressLint("UseGetLayoutInflater")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = Dialog(requireActivity())
 

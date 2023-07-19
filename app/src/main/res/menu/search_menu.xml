@@ -10,7 +10,8 @@
         app:iconifiedByDefault="false"
         android:icon="@drawable/search"
         app:searchIcon="@drawable/search"
-        app:showAsAction="ifRoom|withText"
+        android:orderInCategory="100"
+        app:showAsAction="always|withText"
         app:actionViewClass="android.widget.SearchView"
         />
 <!--    app:showAsAction="ifRoom|withText"-->

@@ -1,10 +1,12 @@
 package com.programmsoft.procurrency
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,6 +17,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.navigation.NavigationView
 import com.programmsoft.procurrency.databinding.ActivityMainBinding
 import com.programmsoft.utils.Components
+import com.programmsoft.utils.Functions
+import com.programmsoft.utils.SharedPreference
+import com.programmsoft.viewmodels.CurrenciesViewModel
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -23,9 +28,29 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SharedPreference.init(this)
         navigationUI()
-        Components.clickMenu(binding, this, supportFragmentManager)
+        if (SharedPreference.downloadCurrency == 0) {
+            uploadData()
+        }
+        Functions.statusAndNavigationBars(this, window)
     }
+    private fun uploadData() {
+        val currenciesViewModel: CurrenciesViewModel =
+            ViewModelProvider(this)[CurrenciesViewModel::class.java]
+        currenciesViewModel.getCurrencies().observe(this)
+        {
+            if (it) {
+                Toast.makeText(
+                    this,
+                    Components.db.currencyDao().getAllCurrency().size.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+                SharedPreference.downloadCurrency = 1
+            }
+        }
+    }
+
 
     private fun navigationUI() {
         navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -52,11 +77,20 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             binding.appBarMain.toolbar.setNavigationIcon(R.drawable.menu_hamburger)
         }
         val actionBarDrawerToggle =
-            ActionBarDrawerToggle(this, drawerLayout, findViewById(R.id.toolbar), R.string.app_name, R.string.app_name)
+            ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                findViewById(R.id.toolbar),
+                R.string.app_name,
+                R.string.app_name
+            )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.drawerArrowDrawable.color = ContextCompat.getColor(this,R.color.black)
+        actionBarDrawerToggle.drawerArrowDrawable.color =
+            ContextCompat.getColor(this, R.color.black)
         actionBarDrawerToggle.syncState()
+        Components.clickMenu(binding, this, supportFragmentManager)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

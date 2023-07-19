@@ -1,101 +1,116 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context="com.programmsoft.fragments.MainFragment">
+<layout>
+    <data>
+        <variable
+            name="viewPagerAdapter"
+            type="com.programmsoft.adapters.ViewPager2Adapter" />
 
-    <ScrollView
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        android:background="@color/background"
+        tools:context="com.programmsoft.fragments.MainFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/currencyTabLayout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/currencyViewPager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+                android:layout_height="match_parent">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/currencyViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:layout_constraintBottom_toTopOf="@id/circleTabLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/currencyTabLayout" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/currencyTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/currencyViewPager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/circleTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/currencyViewPager"
-                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/currencyViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/circleTabLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/currencyTabLayout" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/historyBgCard"
-                style="@style/HistoryBgCard"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:elevation="15dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:stateListAnimator="@null"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="0dp"
-                app:cardMaxElevation="0dp"
-                app:cardPreventCornerOverlap="true"
-                app:layout_constraintBottom_toBottomOf="@id/currencyHistoryRv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
-                tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/circleTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toTopOf="@id/historyBgCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/currencyViewPager"
+                    tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
-            <TextView
-                android:id="@+id/historyCurrenciesTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:fontFamily="@font/sf_display_regular"
-                android:text="@string/history_currencies"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/currencyHistoryRv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
-                tools:ignore="MissingConstraints" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/historyBgCard"
+                    style="@style/HistoryBgCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:elevation="15dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:stateListAnimator="@null"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:layout_constraintBottom_toBottomOf="@id/currencyHistoryRv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
+                    tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/currencyHistoryRv"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/historyCurrenciesTv"
-                tools:ignore="MissingConstraints"
-                tools:listitem="@layout/item_currency_history" />
+                <TextView
+                    android:id="@+id/historyCurrenciesTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/sf_display_regular"
+                    android:text="@string/history_currencies"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/currencyHistoryRv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
+                    tools:ignore="MissingConstraints" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/currencyHistoryRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adapter="@{viewPagerAdapter}"
+                    android:background="@color/black"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/historyCurrenciesTv"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_currency_history" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

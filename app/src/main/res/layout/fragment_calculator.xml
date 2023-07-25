@@ -1,224 +1,277 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context="com.programmsoft.fragments.CalculatorFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bgNotificationCard"
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="topCurrency"
+            type="com.programmsoft.room.entity.Currency" />
+
+        <variable
+            name="topSpinnerAdapter"
+            type="com.programmsoft.adapters.SpinnerAdapter" />
+
+        <variable
+            name="bottomSpinnerAdapter"
+            type="com.programmsoft.adapters.SpinnerAdapter" />
+
+        <variable
+            name="exchangeCurrencyModel"
+            type="com.programmsoft.models.ExchangeCurrencyModel" />
+
+        <variable
+            name="currencySpinner"
+            type="com.programmsoft.models.CurrencySpinner" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/edt_bg_normal"
-        android:backgroundTint="@null"
-        android:backgroundTintMode="@null"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:stateListAnimator="@null"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="0.5dp"
-        app:cardMaxElevation="0dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck">
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context="com.programmsoft.fragments.CalculatorFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bgNotificationCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="400dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/edt_bg_normal"
+            android:backgroundTint="@null"
+            android:backgroundTintMode="@null"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0.5dp"
+            app:cardMaxElevation="0dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints,TouchTargetSizeCheck">
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/topSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:minHeight="48dp"
-                android:popupBackground="@color/white"
-                app:layout_constraintBottom_toTopOf="@id/currencyEdt"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_currency_spinner" />
-
-            <EditText
-                android:id="@+id/currencyEdt"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/sf_display_regular"
-                android:hint="@string/zero"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingBottom="15dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/exchangeImg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topSpinner"
-                tools:ignore="Autofill,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/exchangeImg"
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
-                android:elevation="1dp"
-                android:src="@drawable/exchange"
-                app:layout_constraintBottom_toTopOf="@id/bottomSpinner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/currencyEdt"
-                tools:ignore="ContentDescription" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/leftDivider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintBottom_toBottomOf="@id/exchangeImg"
-                app:layout_constraintEnd_toStartOf="@id/exchangeImg"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/exchangeImg" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/rightDivider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintBottom_toBottomOf="@id/exchangeImg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/exchangeImg"
-                app:layout_constraintTop_toTopOf="@id/exchangeImg" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/bottomSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:minHeight="48dp"
-                android:popupBackground="@color/white"
-                app:layout_constraintBottom_toTopOf="@id/currencyLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/exchangeImg"
-                tools:listitem="@layout/item_currency_spinner" />
-
-            <LinearLayout
-                android:id="@+id/currencyLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottomSpinner"
-                app:layout_constraintVertical_bias="1.0"
-                tools:ignore="DisableBaselineAlignment">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/buyCurrencyLayout"
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/topSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:adapter="@{topSpinnerAdapter}"
+                    android:minHeight="48dp"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintBottom_toTopOf="@id/currencyEdt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_currency_spinner" />
+
+                <EditText
+                    android:id="@+id/currencyEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/sf_display_regular"
+                    android:hint="@string/zero"
+                    android:imeOptions="actionSearch"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingBottom="15dp"
+                    android:singleLine="true"
+                    android:text="@={exchangeCurrencyModel.exchangeCurrency}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/exchangeBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/topSpinner"
+                    tools:ignore="Autofill,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                    <TextView
-                        android:id="@+id/buy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="3dp"
-                        android:fontFamily="@font/sf_display_regular"
-                        android:text="@string/buy"
-                        android:textColor="@color/gray_two"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@id/buyPrice"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@id/buyPrice"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextContrastCheck" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/exchangeBtn"
+                    android:layout_width="?actionBarSize"
+                    android:layout_height="?actionBarSize"
+                    android:background="@drawable/background_image_btn"
+                    android:contentDescription="@string/exchange_button"
+                    android:elevation="1dp"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/exchange"
+                    app:layout_constraintBottom_toTopOf="@id/bottomSpinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/currencyEdt" />
 
-                    <TextView
-                        android:id="@+id/buyPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_display_bold"
-                        android:text="@string/selling_price_with_currency"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/buy" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/leftDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintBottom_toBottomOf="@id/exchangeBtn"
+                    app:layout_constraintEnd_toStartOf="@id/exchangeBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/exchangeBtn" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/sellCurrencyLayout"
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/rightDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintBottom_toBottomOf="@id/exchangeBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/exchangeBtn"
+                    app:layout_constraintTop_toTopOf="@id/exchangeBtn" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/bottomSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:adapter="@{bottomSpinnerAdapter}"
+                    android:minHeight="48dp"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintBottom_toTopOf="@id/exchangedCurrency"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/exchangeBtn"
+                    tools:listitem="@layout/item_currency_spinner" />
 
-                    <TextView
-                        android:id="@+id/sell"
+                <TextView
+                    android:id="@+id/exchangedCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/sf_display_regular"
+                    app:multipliedValue="@{exchangeCurrencyModel.exchangeCurrency}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/currencyLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bottomSpinner" />
+
+                <LinearLayout
+                    android:id="@+id/currencyLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/exchangedCurrency"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="DisableBaselineAlignment">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/buyCurrencyLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="3dp"
-                        android:fontFamily="@font/sf_display_regular"
-                        android:text="@string/selling"
-                        android:textColor="@color/gray_two"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@id/sellPrice"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@id/sellPrice"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextContrastCheck,TextContrastCheck" />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/sellPrice"
+                        <TextView
+                            android:id="@+id/buy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="3dp"
+                            android:fontFamily="@font/sf_display_regular"
+                            android:text="@string/buy"
+                            android:textColor="@color/gray_two"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/buyPrice"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/buyPrice"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="TextContrastCheck" />
+
+                        <TextView
+                            android:id="@+id/buyPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_display_bold"
+                            android:text="@{TextUtils.isEmpty(topCurrency.buyPrice) ? @string/not_available : String.format(@string/currency_uzs, topCurrency.buyPrice)}"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/buy" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sellCurrencyLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_display_bold"
-                        android:text="@string/selling_price_with_currency"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/sell" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/sell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="3dp"
+                            android:fontFamily="@font/sf_display_regular"
+                            android:text="@string/selling"
+                            android:textColor="@color/gray_two"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/sellPrice"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/sellPrice"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/sellPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_display_bold"
+                            android:text="@{TextUtils.isEmpty(topCurrency.sellPrice) ? @string/not_available : String.format(@string/currency_uzs, topCurrency.sellPrice)}"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/sell" />
 
-    </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

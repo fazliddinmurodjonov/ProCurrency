@@ -9,7 +9,15 @@
         android:id="@+id/nav_currencies"
         android:name="com.programmsoft.fragments.AllCurrenciesFragment"
         android:label="@string/pro_currencies"
-        tools:layout="@layout/fragment_all_currencies" />
+        tools:layout="@layout/fragment_all_currencies">
+        <action
+            android:id="@+id/action_nav_currencies_to_nav_calculator"
+            app:destination="@id/nav_calculator" >
+            <argument
+                android:name="code"
+                app:argType="string" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/nav_calculator"
         android:name="com.programmsoft.fragments.CalculatorFragment"

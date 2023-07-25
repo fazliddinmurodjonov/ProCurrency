@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -13,7 +14,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.navigation.NavigationView
 import com.programmsoft.procurrency.databinding.ActivityMainBinding
 import com.programmsoft.utils.Components
@@ -22,19 +22,28 @@ import com.programmsoft.utils.SharedPreference
 import com.programmsoft.viewmodels.CurrenciesViewModel
 
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
-    private val binding: ActivityMainBinding by viewBinding()
+class MainActivity : AppCompatActivity() {
+    //  private val binding: ActivityMainBinding by viewBinding()
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
+
+    companion object {
+        lateinit var binding: ActivityMainBinding
+        var topSpinnerPosition = 0
+        var bottomSpinnerPosition = 0
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         SharedPreference.init(this)
         navigationUI()
-        if (SharedPreference.downloadCurrency == 0) {
-            uploadData()
-        }
+//        if (SharedPreference.downloadCurrency == 0) {
+//            uploadData()
+//        }
         Functions.statusAndNavigationBars(this, window)
     }
+
     private fun uploadData() {
         val currenciesViewModel: CurrenciesViewModel =
             ViewModelProvider(this)[CurrenciesViewModel::class.java]
@@ -49,6 +58,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 SharedPreference.downloadCurrency = 1
             }
         }
+
     }
 
 

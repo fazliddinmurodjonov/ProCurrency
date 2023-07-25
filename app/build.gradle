@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.programmsoft.procurrency"
-        minSdk 21
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -74,5 +74,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.github.hrskrs:InstaDotView:1.1'
+
 
 }

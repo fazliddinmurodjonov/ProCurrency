@@ -16,15 +16,30 @@ class CurrenciesRepository {
         val response = currencies.await()
         if (response.isSuccessful) {
             val currenciesList = response.body()
+            var time = ""
+            var date = ""
             currenciesList?.forEach {
-                val currency = Currency(it.cb_price,
+                if (it.date.length > 12) {
+                    time = Components.getTimeOrDate(it.date, "time")
+                    date = Components.getTimeOrDate(it.date, "date")
+                } else {
+                    time = Components.getHoursAndMinutes()
+                    date = it.date
+                }
+                val currency = Currency(
+                    it.cb_price,
                     it.code,
-                    it.date,
                     it.nbu_buy_price,
                     it.nbu_cell_price,
-                    it.title)
+                    it.title,
+                    time,
+                    date
+                )
                 Components.db.currencyDao().insert(currency)
             }
+            val uzsCurrency = Currency("1", "UZS", "", "", "O‘zbek so‘mi", time, date)
+            Components.db.currencyDao().insert(uzsCurrency)
+
         }
         return true
     }

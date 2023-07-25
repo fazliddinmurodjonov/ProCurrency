@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="currencySpinner"
-        type="com.programmsoft.models.CurrencySpinner" />
+
+        <variable
+            name="currencySpinner"
+            type="com.programmsoft.models.CurrencySpinner" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:orientation="horizontal"
+        android:padding="10dp"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/flag"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:src="@drawable/uzs"
@@ -32,11 +32,12 @@
             android:id="@+id/currency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:fontFamily="@font/sf_display_regular"
-            android:text="@string/uzs"
+            android:text="@{currencySpinner.title}"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 </layout>

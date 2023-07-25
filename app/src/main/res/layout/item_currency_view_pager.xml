@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 
-<com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bgNotificationCard"
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="15dp"
-    android:backgroundTint="@null"
-    android:backgroundTintMode="@null"
-    android:clickable="true"
-    android:elevation="1dp"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:stateListAnimator="@null"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="1dp"
-    app:cardMaxElevation="0dp"
-    app:cardUseCompatPadding="true"
-    app:layout_constraintCircleRadius="50dp"
-    tools:ignore="MissingConstraints,TouchTargetSizeCheck">
+    <data>
+
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="currency"
+            type="com.programmsoft.room.entity.Currency" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/bgNotificationCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:elevation="1dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@null"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintCircleRadius="50dp"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,6 +43,8 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/usd"
+                app:layout_constraintEnd_toStartOf="@id/date"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,9 +55,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
-                android:text="@string/date"
+                android:text="@{currency.date}"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@id/flag"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -55,11 +67,12 @@
                 style="@style/TextRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
                 android:text="@string/selling"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/sellingPrice"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/sellingPrice"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/sellingPrice" />
 
             <TextView
                 android:id="@+id/sellingPrice"
@@ -68,9 +81,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/selling_price"
-                android:textSize="24sp"
+                android:text="@{TextUtils.isEmpty(currency.sellPrice) ? @string/not_available : String.format(@string/currency_uzs, currency.sellPrice)}"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/sellingCurrency"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -80,20 +95,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/currency"
+                android:text="@string/uzs"
                 android:textSize="18sp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/sellingPrice" />
+                app:layout_constraintStart_toEndOf="@id/sellingPrice"
+                app:layout_constraintTop_toTopOf="@id/sellingPrice"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/buying"
                 style="@style/TextRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/selling"
+                android:layout_marginEnd="35dp"
+                android:text="@string/buy"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/buyingPrice"
-                app:layout_constraintStart_toStartOf="@id/buyingPrice" />
+                app:layout_constraintStart_toStartOf="@id/buyingPrice"
+                app:layout_constraintEnd_toEndOf="@id/buyingPrice"
+                app:layout_constraintHorizontal_bias="0.0" />
 
 
             <TextView
@@ -101,13 +122,14 @@
                 style="@style/TextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/buying_price"
-                android:textSize="24sp"
+                android:text="@{TextUtils.isEmpty(currency.buyPrice) ? @string/not_available : String.format(@string/currency_uzs, currency.buyPrice)}"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/buyingCurrency" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+               android:layout_marginEnd="25dp"
+                />
 
 
             <TextView
@@ -117,10 +139,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/currency"
+                android:text="@string/uzs"
                 android:textSize="18sp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/buyingPrice"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+</layout>

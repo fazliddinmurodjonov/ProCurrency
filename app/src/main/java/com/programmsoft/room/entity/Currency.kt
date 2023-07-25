@@ -7,29 +7,32 @@ import androidx.room.PrimaryKey
 class Currency {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
-    var cb_price: String? = null
+    var cbPrice: String? = null
     var code: String? = null
-    var date: String? = null
-    var nbu_buy_price: String? = null
-    var nbu_cell_price: String? = null
+    var buyPrice: String? = null
+    var sellPrice: String? = null
     var title: String? = null
+    var time: String? = null
+    var date: String? = null
 
     constructor()
-
     constructor(
-        cb_price: String?,
+        cbPrice: String?,
         code: String?,
-        date: String?,
-        nbu_buy_price: String?,
-        nbu_cell_price: String?,
+        buyPrice: String?,
+        sellPrice: String?,
         title: String?,
+        time: String?,
+        date: String?,
     ) {
-        this.cb_price = cb_price
+        this.cbPrice = cbPrice
         this.code = code
-        this.date = date
-        this.nbu_buy_price = nbu_buy_price
-        this.nbu_cell_price = nbu_cell_price
+        this.buyPrice = buyPrice
+        this.sellPrice = sellPrice
         this.title = title
+        this.time = time
+        this.date = date
     }
+
 
 }

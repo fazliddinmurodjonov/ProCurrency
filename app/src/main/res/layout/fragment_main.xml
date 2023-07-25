@@ -1,15 +1,21 @@
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
-            name="viewPagerAdapter"
-            type="com.programmsoft.adapters.ViewPager2Adapter" />
+            name="currencyVPAdapter"
+            type="com.programmsoft.adapters.CurrencyViewPagerAdapter" />
+
+        <variable
+            name="historyRVAdapter"
+            type="com.programmsoft.adapters.CurrencyHistoryAdapter" />
 
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
@@ -30,36 +36,61 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/currencyTabLayout"
+                    android:id="@+id/currencyCodeTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="1dp"
+                    android:maxHeight="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:paddingBottom="0dp"
                     app:layout_constraintBottom_toTopOf="@id/currencyViewPager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:tabGravity="fill"
+                    app:tabIndicator="@null"
+                    app:tabIndicatorColor="@null"
+                    app:tabMaxWidth="0dp"
+                    app:tabMode="auto"
+                    app:tabPaddingBottom="0dp"
+                    app:tabPaddingTop="0dp"
+                    app:tabRippleColor="@null"
                     tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/currencyViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="200dp"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toTopOf="@id/circleTabLayout"
+                    app:layout_constraintBottom_toTopOf="@id/indicatorTabLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/currencyTabLayout" />
+                    app:layout_constraintTop_toBottomOf="@id/currencyCodeTabLayout" />
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/circleTabLayout"
+                    android:id="@+id/indicatorTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
+                    android:elevation="0dp"
+                    android:maxHeight="0dp"
+                    android:paddingBottom="0dp"
                     app:layout_constraintBottom_toTopOf="@id/historyBgCard"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/currencyViewPager"
+                    app:tabGravity="center"
+                    app:tabIndicator="@null"
+                    app:tabIndicatorColor="@null"
+                    app:tabMaxWidth="0dp"
+                    app:tabMode="fixed"
+                    app:tabPaddingBottom="0dp"
+                    app:tabPaddingEnd="0dp"
+                    app:tabPaddingStart="0dp"
+                    app:tabPaddingTop="0dp"
+                    app:tabRippleColor="@null"
                     tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/historyBgCard"
                     style="@style/HistoryBgCard"
@@ -75,7 +106,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/currencyHistoryRv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
+                    app:layout_constraintTop_toBottomOf="@id/indicatorTabLayout"
                     tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
 
                 <TextView
@@ -91,15 +122,14 @@
                     app:layout_constraintBottom_toTopOf="@id/currencyHistoryRv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/circleTabLayout"
+                    app:layout_constraintTop_toBottomOf="@id/indicatorTabLayout"
                     tools:ignore="MissingConstraints" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/currencyHistoryRv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:adapter="@{viewPagerAdapter}"
-                    android:background="@color/black"
+                    android:adapter="@{historyRVAdapter}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

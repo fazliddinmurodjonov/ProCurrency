@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+<layout>
+    <data></data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
-        android:elevation="0dp"
-        android:theme="@style/Theme.ProCurrency.AppBarOverlay"
-        app:elevation="0dp">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:theme="@style/Widget.AppCompat.SearchView"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/menu_hamburger"
-            app:popupTheme="@style/Theme.ProCurrency.PopupOverlay"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar"
-            app:titleTextColor="@color/black" />
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:elevation="0dp"
+            android:theme="@style/Theme.ProCurrency.AppBarOverlay"
+            app:elevation="0dp">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:theme="@style/Widget.AppCompat.SearchView"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/menu_hamburger"
+                app:popupTheme="@style/Theme.ProCurrency.PopupOverlay"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar"
+                app:titleTextColor="@color/black" />
 
-    <include
-        android:id="@+id/contentMain"
-        layout="@layout/content_main" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/contentMain"
+            layout="@layout/content_main" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
